@@ -1,6 +1,15 @@
+import { useState } from "react";
 import"./chat.css"
+import EmojiPicker from "emoji-picker-react";
 
 const Chat =()=>{
+
+    const [open,setOpen]=useState(false)
+    const [text,setText]=useState("")
+    const handleEmoji = (e)=>{
+        setText((prev)=> prev + e.emoji);
+        setOpen(false)
+    };
     return (
         <div className="chat">
             <div className="top">
@@ -12,26 +21,72 @@ const Chat =()=>{
                     </div>
                 </div>
                 <div className="icons">
-                    <img src="./phone.png" style={{width: "20px",height:"20px"}} alt=""/>
+                    <img src="./phone.png"  alt=""/>
                     <img src="./video.png" alt=""/>
                     <img src="./info.png" alt=""/>
 
 
                 </div>
             </div>
-            <div className="ceter"></div>
+            <div className="center">
+            <div className="message">
+                <img src="./avatar.png" alt=""/>
+                <div className="texts">
+                <img src="./pexels-aibek-skakov-418917601-29902918.jpg" alt=""/>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus explicabo itaque deserunt quam quibusdam modi aliquam voluptatum debitis est, dolore voluptatibus exercitationem nam eaque commodi unde, facere vitae ipsa obcaecati?
+                    </p>
+                    <span>1 min ago</span>
+                </div>
+            </div>
+            <div className="message own">
+                <div className="texts">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus explicabo itaque deserunt quam quibusdam modi aliquam voluptatum debitis est, dolore voluptatibus exercitationem nam eaque commodi unde, facere vitae ipsa obcaecati?
+                    </p>
+                    <span>1 min ago</span>
+                </div>
+            </div>
+            <div className="message">
+                <img src="./avatar.png" alt=""/>
+                <div className="texts">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus explicabo itaque deserunt quam quibusdam modi aliquam voluptatum debitis est, dolore voluptatibus exercitationem nam eaque commodi unde, facere vitae ipsa obcaecati?
+                    </p>
+                    <span>1 min ago</span>
+                </div>
+            </div>
+            <div className="message own">
+                <div className="texts">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus explicabo itaque deserunt quam quibusdam modi aliquam voluptatum debitis est, dolore voluptatibus exercitationem nam eaque commodi unde, facere vitae ipsa obcaecati?
+                    </p>
+                    <span>1 min ago</span>
+                </div>
+            </div>
+
+            </div>
             <div className="bottom">
                 <div className="icons">
                 <img src="./img.png" alt=""/>
                 <img src="./camera.png" alt=""/>
                 <img src="./mic.png" alt=""/>
                 </div>
-                <input type="text" placeholder="Type a message.."/>
+                <input type="text" placeholder="Type a message.."
+                    value={text}
+                    onChange={(e)=>setText(e.target.value)}
+                />
                 <div className="emoji">
-                    <img src="./emoji.png" alt=""/>
+                    <img src="./emoji.png" alt=""
+                        onClick={()=>setOpen((prev)=>!prev)}
+                    />
+                    <div className="picker">
+                    <EmojiPicker open={open} onEmojiClick={handleEmoji}/>
+                    </div>
+                    
 
                 </div>
-                <button className="SendButton">send</button>
+                <button className="sendButton">send</button>
             </div>
         </div>
     )
